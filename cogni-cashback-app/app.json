@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "cogni-cashback-app",
+    "description": "Cogni Cashback Explorer",
+    "slug": "cogni-cashback-app",
+    "privacy": "public",
+    "sdkVersion": "29.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "githubUrl": "https://github.com/victorouse/cogni-cashback-app"
+  }
+}

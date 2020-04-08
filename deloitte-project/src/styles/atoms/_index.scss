@@ -1,0 +1,108 @@
+// Atoms
+//
+// If atoms are the basic building blocks of matter, then the atoms of
+// our interfaces serve as the foundational building blocks that
+// comprise all our user interfaces. Therefore these atoms would include
+// basic HTML tags like form labels, inputs, buttons, and other elements
+// that can’t be broken down any further without ceasing to be functional.
+//
+// @source - http://atomicdesign.bradfrost.com/chapter-2/
+
+// Navbar
+// ======
+
+.navbar-brand {
+  padding: 0;
+
+  img {
+    height: 100%;
+  }
+}
+
+.navbar-left {
+  float: left !important;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+.navbar-text {
+  float: left !important;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+// Buttons
+// =======
+
+.btn-cta {
+  border: 2px solid $white;
+  border-radius: 0;
+  padding: 15px 40px;
+}
+
+// Images
+// ======
+
+.image-popup {
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.image-peek {
+  img {
+    float: right;
+    margin-bottom: -30px;
+    margin-right: 10px;
+  }
+}
+
+.image-project {
+  padding: 10px 10px 20px;
+  width: 100%;
+}
+
+.image-carousel {
+  width: 100%;
+}
+
+// Callout 
+// =======
+
+.subtitle {
+  padding-bottom: 20px;
+}
+
+.callout-text {
+  padding: 0 4rem 3rem;
+}
+
+// Carousel
+// ========
+
+.carousel-control {
+  background-image: none !important;
+}
+
+// Seperators
+// ==========
+
+.seperator-top {
+  position: absolute;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  border-top: 1px solid $fadedgrey;
+  width: 10rem;
+}
+
+
+
+
+
+
+
+

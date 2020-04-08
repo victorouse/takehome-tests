@@ -1,0 +1,21 @@
+html {
+	font-family: 'Roboto', Helvetica, sans-serif;
+	font-size: 100%;
+	font-style: normal;
+	font-weight: normal;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: rgba(#000, .9);
+	&:hover {
+		color: rgba(#000, 1);
+	}
+	&.active {
+		color: rgba(#000, 1);
+	}
+}

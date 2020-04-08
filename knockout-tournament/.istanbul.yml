@@ -1,0 +1,7 @@
+reporting:
+    print: summary
+    reports:
+        - json
+        - lcovonly
+        - html
+    dir: ./coverage/server

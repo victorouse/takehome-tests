@@ -1,0 +1,10 @@
+.carousel-control {
+  background-image: none;
+}
+
+.carousel-indicators {
+  li {
+    background-color: $indicator-inactive-color;
+    border: 0;
+  }
+}

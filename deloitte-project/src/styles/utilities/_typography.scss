@@ -1,0 +1,90 @@
+// =============================
+// Element font styles and sizes
+// =============================
+
+// Base
+// ========
+
+html,
+body {
+  font-family: Lato;
+}
+
+// Heading
+// =======
+
+.heading {
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+$heading-xs-font-size: 1.3rem;
+$heading-sm-font-size: 1.5rem;
+$heading-md-font-size: 2.8rem;
+$heading-lg-font-size: 6rem;
+
+.heading-xs { font-size: $heading-xs-font-size; }
+.heading-sm { font-size: $heading-sm-font-size; }
+.heading-md { font-size: $heading-md-font-size; }
+.heading-lg { font-size: $heading-lg-font-size; }
+
+// Body text
+// =========
+
+$body-xs-font-size: 1.3rem;
+$body-sm-font-size: 1.6rem;
+$body-md-font-size: 2rem;
+
+.body-xs-text { font-size: $body-xs-font-size; font-weight: 300; }
+.body-sm-text { font-size: $body-sm-font-size; }
+.body-md-text { font-size: $body-md-font-size; }
+
+// Fancy text
+// ==========
+
+.fancy-text {
+  font-family: Cormorant Garamond;
+  font-style: italic;
+}
+
+// Footer text
+// ===========
+
+.footer-text {
+  padding: 40px 0 20px;
+  text-transform: uppercase;
+}
+
+// Blurb
+// =====
+
+.blurb {
+  .body-sm-text {
+    line-height: 32px;
+  }
+}
+
+// Buttons
+// =======
+
+.btn-cta {
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+// Annotation
+// ==========
+
+.annotation {
+  .body-xs-text {
+    line-height: 22px;
+  }
+}
+
+// Callout
+// =======
+
+.callout-text {
+  line-height: 32px;
+}

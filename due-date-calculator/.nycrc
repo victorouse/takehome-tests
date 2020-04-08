@@ -1,0 +1,14 @@
+{
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "test/**/*.js"
+  ],
+  "require": [
+    "babel-register"
+  ],
+  "cache": true,
+  "sourceMap": false,
+  "instrument": false
+}

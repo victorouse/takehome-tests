@@ -1,0 +1,132 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+##########################################################################################
+# Application configurations
+##########################################################################################
+
+# Node
+nodejs_version = "latest"   # By default "latest" will equal the latest stable version
+nodejs_packages = []          # List any global NodeJS packages that you want to install
+
+##########################################################################################
+# Vagrant configurations
+##########################################################################################
+
+# Server configuration
+hostname = "canva.dev"
+server_ip = "172.28.128.3"
+server_timezone = "UTC"
+
+Vagrant.configure("2") do |config|
+  # Set server to Ubuntu 14.04
+  config.vm.box = "ubuntu/trusty64"
+
+  # Create a hostname, don't forget to put it to the `hosts` file
+  config.vm.hostname = hostname
+
+  # Guest IP address and port
+  config.vm.network :private_network, ip: server_ip
+  config.vm.network :forwarded_port, guest: 8765, host: 8765
+  config.vm.network :forwarded_port, guest: 9876, host: 9876
+  config.vm.network :forwarded_port, guest: 9222, host: 9222
+  config.vm.network :forwarded_port, guest: 5858, host: 5858
+
+  # Sync app from host
+  # Use NFS for general purpose
+  sync_nfs(config, "./", "/home/vagrant/challenge")
+
+  # Use rsync if in need of watch functionality
+  # config.vm.synced_folder "./", "/home/vagrant/challenge",
+  #   type: "rsync",
+  #   rsync__args: ["--verbose", "--archive", "-z"]
+
+  # Configure vagrant-gatling-rsync
+  if Vagrant.has_plugin?("vagrant-gatling-rsync")
+    config.gatling.latency = 0.2
+    config.gatling.time_format = "%H:%M:%S"
+  end
+
+  # config.gatling.rsync_on_startup = true
+
+  # SSH configuration and key
+  # config.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa']
+  # config.ssh.forward_agent = true
+  # config.ssh.keys_only = false
+  # config.ssh.insert_key = true
+
+  # config.ssh.usernamne = "vagrant"
+  # config.ssh.password = "vagrant"
+
+  ########################################################################################
+  # Virtualbox specific
+  ########################################################################################
+
+  config.vm.provider :virtualbox do |vb|
+    # Set hostname
+    vb.name = hostname
+
+    # Set the timesync threshold to 10 seconds, instead of the default 20 minutes.
+    # If the clock gets more than 15 minutes out of sync (due to your laptop going
+    # to sleep for instance, then some 3rd party services will reject requests.
+    vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+
+    # Prevent VMs running on Ubuntu to lose internet connection
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+
+    # More memory
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+
+    # Configure SATA controller to use I/O cache
+    vb.customize ["storagectl", :id, "--name", "SATAController", "--hostiocache", "on"]
+
+    # For NAT adapter
+    vb.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
+
+    # For host-only adapter
+    vb.customize ["modifyvm", :id, "--nictype2", "Am79C973"]
+  end
+
+  ########################################################################################
+  # Installations / provisions
+  ########################################################################################
+
+  # Base packages
+  config.vm.provision "shell", path: ".provision/base.sh", args: [server_timezone]
+
+  # Optimize base box
+  config.vm.provision "shell", path: ".provision/base_box_optimizations.sh", privileged: true
+
+  # Nodejs
+  config.vm.provision "shell", path: ".provision/nodejs.sh", privileged: false, args: nodejs_packages.unshift(nodejs_version)
+
+  # Docker
+  config.vm.provision "shell", path: ".provision/docker.sh", args: "permissions"
+
+  # Selenium and Chrome
+  config.vm.provision "shell", path: ".provision/selenium.sh"
+
+  # Start Xvbf screen
+  config.vm.provision "shell", path: ".provision/xvbf.sh", run: "always"
+end
+
+##########################################################################################
+# Helper functions
+##########################################################################################
+
+# Share file system over (optimized) NFS
+def sync_nfs(config, host_path, vm_path)
+  config.vm.synced_folder host_path, vm_path, type: "nfs", mount_options: [
+    'async',
+    'fsc',
+    'intr',
+    'lookupcache=pos',
+    'noacl',
+    'noatime',
+    'nodiratime',
+    'nosuid',
+    'rsize=1048576',
+    'wsize=1048576'
+  ]
+end

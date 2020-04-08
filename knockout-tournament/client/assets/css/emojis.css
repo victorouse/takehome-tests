@@ -1,0 +1,62 @@
+.emoji-party {
+  background: url('../images/tada.png');
+}
+
+.emoji-finger {
+  background: url('../images/point_right.png');
+}
+
+.emoji-praise {
+  background: url('../images/raised_hands.png');
+}
+
+.emoji-pray {
+  background: url('../images/pray.png');
+}
+
+.emoji-heart {
+  background: url('../images/heart.png');
+}
+
+.emoji-hand {
+  background: url('../images/hand.png');
+}
+
+.emoji-punch {
+  background: url('../images/punch.png');
+}
+
+.emoji {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.emoji-sm {
+  height: 1rem;
+  width: 1rem;
+}
+
+.emoji-md {
+  height: 2rem;
+  width: 2rem;
+}
+
+.emoji-lg {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.emoji-button {
+  height: 30px;
+  width: 30px;
+
+  position: relative;
+  top: -1px;
+  left: 0;
+}

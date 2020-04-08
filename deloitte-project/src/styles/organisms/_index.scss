@@ -1,0 +1,41 @@
+// Organisms
+//
+// Organisms can consist of similar or different molecule types.
+// A header organism might consist of dissimilar elements such as
+// a logo image, primary navigation list, and search form.
+//
+// @source - http://atomicdesign.bradfrost.com/chapter-2/
+
+#navigation {
+  padding: 0;
+
+  .container-fluid {
+    padding: 0 15px;
+  }
+
+  .navbar {
+    margin: 40px 0 20px;
+  }
+
+  .navbar-clear {
+    border: 0;
+    border-radius: 0;
+  }
+}
+
+#image-slider {
+  padding-top: 0;
+}
+
+#callout {}
+
+#breakout {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#project-list {}
+
+#footer {}
