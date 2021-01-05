@@ -9,7 +9,7 @@
     "build": "rimraf ./dist && webpack --config webpack.config.production.js"
   },
   "dependencies": {
-    "axios": "^0.15.0",
+    "axios": "^0.21.1",
     "css-declaration-sorter": "^2.0.0",
     "css-mqpacker": "^5.0.1",
     "mobx": "3.1.10",
